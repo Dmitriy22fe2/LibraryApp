@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список читателей</title>
+</head>
+<body>
+    Список читателей:
+    <br/>
+    <dev th:each="person : ${people}">
+        <p th:text="${person.getFullName()}"></p>
+    </dev>
+</body>
+</html>

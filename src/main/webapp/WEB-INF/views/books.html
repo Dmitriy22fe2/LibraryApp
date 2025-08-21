@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список книг</title>
+</head>
+<body>
+    Список книг:
+    <br/>
+    <dev th:each="book : ${books}">
+        <p th:text="${book.getTitle()}"></p>
+    </dev>
+</body>
+</html>
