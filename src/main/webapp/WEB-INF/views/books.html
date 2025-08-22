@@ -5,10 +5,19 @@
     <title>Список книг</title>
 </head>
 <body>
+    <a href="/main">На главную.</a>
+    <p/>
+    <br/>
     Список книг:
     <br/>
     <dev th:each="book : ${books}">
-        <p th:text="${book.getTitle()}"></p>
+        <a th:href="@{/books/{id}(id=${book.getBookId()})}"
+           th:text="${book.getTitle()}">Книга</a>
+        <br/>
     </dev>
+    <br/>
+    <form th:action="@{/books/new}" th:method="GET">
+        <input type="submit" value="Добавить книгу.">
+    </form>
 </body>
 </html>

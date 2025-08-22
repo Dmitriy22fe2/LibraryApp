@@ -5,10 +5,19 @@
     <title>Список читателей</title>
 </head>
 <body>
+    <a href="/main">На главную.</a>
+    <p/>
+    <br/>
     Список читателей:
     <br/>
     <dev th:each="person : ${people}">
-        <p th:text="${person.getFullName()}"></p>
+        <a th:href="@{/people/{id}(id=${person.getPersonId()})}"
+           th:text="${person.getFullName()}">Читатель</a>
+        <br/>
     </dev>
+    <br/>
+    <form th:action="@{/people/new}" th:method="GET">
+        <input type="submit" value="Добавить читателя.">
+    </form>
 </body>
 </html>

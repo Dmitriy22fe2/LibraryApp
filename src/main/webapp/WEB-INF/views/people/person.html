@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Читатель</title>
+</head>
+<body>
+    <a href="/people">Список Читателей.</a>
+    <p/>
+    <br/>
+    <p th:text="${person.getFullName()} + ', ' + ${person.getYearOfBirth()}"></p>
+    <hr/>
+    <form th:method="GET" th:action="@{/people/{id}/edit(id=${person.getPersonId()})}" th:object="${person}">
+        <input type="submit" value="Редактировать.">
+    </form>
+    <br/>
+    <form th:method="DELETE" th:action="@{/people/{id}/delete(id=${person.getPersonId()})}" th:object="${person}">
+        <input type="submit" value="Удалить читателя.">
+    </form>
+</body>
+</html>
