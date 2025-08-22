@@ -1,7 +1,9 @@
 package org.example.controllers;
 
 import org.example.DAO.BookDAO;
+import org.example.DAO.PersonDAO;
 import org.example.models.Book;
+import org.example.models.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,11 +12,13 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class BooksController {
 
+    private PersonDAO personDAO;
     private BookDAO bookDAO;
 
     @Autowired
-    BooksController(BookDAO bookDAO) {
+    BooksController(BookDAO bookDAO,  PersonDAO personDAO) {
         this.bookDAO = bookDAO;
+        this.personDAO = personDAO;
     }
 
     @GetMapping("/books")
@@ -36,8 +40,10 @@ public class BooksController {
     }
 
     @GetMapping("/books/{id}")
-    public String book(@PathVariable("id") int id, Model model) {
+    public String book(@PathVariable("id") int id, Model model, @ModelAttribute("reader") Person reader) {
         model.addAttribute("book", bookDAO.getBookById(id));
+        model.addAttribute("person", personDAO.getBookHoldingPerson(id));
+        model.addAttribute("peopleList", personDAO.getPeople());
         return "/books/book";
     }
 
@@ -57,5 +63,17 @@ public class BooksController {
     public String deleteBook(@PathVariable("id") int id) {
         bookDAO.deleteBook(id);
         return "redirect:/books";
+    }
+
+    @PatchMapping("/books/{id}")
+    public String returnBook(@PathVariable("id") int id, @ModelAttribute("book") Book book) {
+        bookDAO.returnBook(id);
+        return "redirect:/books/" + id;
+    }
+
+    @PatchMapping("/books/{id}/giveout")
+    public String giveOutBook(@PathVariable("id") int id, @ModelAttribute("book") Book book, @ModelAttribute("person") Person person) {
+        bookDAO.giveOutBook(id, person.getPersonId());
+        return "redirect:/books/" + id;
     }
 }

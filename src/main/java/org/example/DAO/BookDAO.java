@@ -37,4 +37,16 @@ public class BookDAO {
     public void deleteBook(int id) {
         jdbcTemplate.update("DELETE FROM books WHERE bookId = ?", id);
     }
+
+    public List<Book> getBooksPersonTook(int id) {
+        return jdbcTemplate.query("SELECT * FROM books WHERE personId = ?", new BeanPropertyRowMapper<>(Book.class), id);
+    }
+
+    public void returnBook(int id) {
+        jdbcTemplate.update("UPDATE books SET personId = null WHERE bookId = ?", id);
+    }
+
+    public void giveOutBook(int bookId, int personId) {
+        jdbcTemplate.update("UPDATE books SET personId = ? WHERE bookId = ?;", personId, bookId);
+    }
 }

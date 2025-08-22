@@ -9,7 +9,20 @@
     <p/>
     <br/>
     <p th:text="${person.getFullName()} + ', ' + ${person.getYearOfBirth()}"></p>
+
+    <div th:if="${bookList.isEmpty() || bookList == null}">
+        <p>Читатель не имеет взятых книг.</p>
+    </div>
+
     <hr/>
+
+    <div th:if="${bookList != null && bookList.size() > 0}">
+        <p><b>Книги: </b></p>
+        <p th:each="book : ${bookList}"
+           th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYear()}"></p>
+        <hr/>
+    </div>
+
     <form th:method="GET" th:action="@{/people/{id}/edit(id=${person.getPersonId()})}" th:object="${person}">
         <input type="submit" value="Редактировать.">
     </form>
