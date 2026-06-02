@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление читателя</title>
+</head>
+<body>
+    <form th:method="POST" th:action="@{/people/add}" th:object="${person}">
+        <lable for="name">Введите ФИО: </lable>
+        <input id="name" type="text" value="" th:field="*{fullName}">
+        <br/>
+        <label for="year">Введите год рождения: </label>
+        <input id="year" type="text" value="" th:field="*{yearOfBirth}">
+        <br/>
+        <input type="submit" value="Добавить.">
+    </form>
+</body>
+</html>
