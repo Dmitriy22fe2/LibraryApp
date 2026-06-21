@@ -4,12 +4,7 @@ target/
 !**/src/test/**/target/
 
 ### IntelliJ IDEA ###
-.idea/modules.xml
-.idea/jarRepositories.xml
-.idea/compiler.xml
-.idea/libraries/
 .idea/
-src/main/resources/database.properties
 *.iws
 *.iml
 *.ipr
@@ -22,7 +17,6 @@ src/main/resources/database.properties
 .settings
 .springBeans
 .sts4-cache
-src/main/resources/database.properties
 
 ### NetBeans ###
 /nbproject/private/
