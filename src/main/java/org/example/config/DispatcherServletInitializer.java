@@ -20,14 +20,13 @@ public class DispatcherServletInitializer extends AbstractAnnotationConfigDispat
 
     @Override
     protected Class<?> @Nullable [] getServletConfigClasses() {
-        return new Class[] {SpringConfiguration.class};
+        return new Class[]{SpringConfiguration.class};
     }
 
     @Override
     protected String[] getServletMappings() {
-        return new String[] {"/"};
+        return new String[]{"/"};
     }
-
 
 
     @Override

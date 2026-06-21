@@ -1,9 +1,9 @@
-package org.example.controllers;
+package org.example.controller;
 
 import org.example.DAO.BookDAO;
 import org.example.DAO.PersonDAO;
-import org.example.models.Book;
-import org.example.models.Person;
+import org.example.model.Book;
+import org.example.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class BooksController {
 
-    private PersonDAO personDAO;
-    private BookDAO bookDAO;
+    private final PersonDAO personDAO;
+    private final BookDAO bookDAO;
 
     @Autowired
     BooksController(BookDAO bookDAO,  PersonDAO personDAO) {

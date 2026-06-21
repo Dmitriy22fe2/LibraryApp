@@ -6,11 +6,11 @@
 </head>
 <body>
     <a href="/books">Список книг.</a>
-    <p/>
+    <p>
     <br/>
     <p th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYear()}"></p>
 
-    <div th:if="${person == null}">
+    <div th:if="${person == null} and ${!#lists.isEmpty(peopleList)}">
         <p>Книга сейчас свободна.</p>
         <form th:method="PATCH" th:action="@{/books/{id}/giveout(id=${book.getBookId()})}">
             <label for="person">Выдать книгу: </label>
@@ -21,6 +21,10 @@
             </select>
             <input type="submit" value="Выдать книгу.">
         </form>
+    </div>
+
+    <div th:if="${#lists.isEmpty(peopleList)}">
+        <p>Некому выдать книгу. Добавьте читателей.</p>
     </div>
 
     <div th:if="${person != null}">

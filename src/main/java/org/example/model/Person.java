@@ -1,6 +1,5 @@
-package org.example.models;
+package org.example.model;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component

@@ -1,6 +1,6 @@
 package org.example.DAO;
 
-import org.example.models.Person;
+import org.example.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -11,7 +11,7 @@ import java.util.List;
 @Component
 public class PersonDAO {
 
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
 
     @Autowired
     public PersonDAO(JdbcTemplate jdbcTemplate) {
@@ -23,7 +23,7 @@ public class PersonDAO {
     }
 
     public void addPerson(Person person) {
-        jdbcTemplate.update("INSERT INTO people (fullName, yearOfBirth) VALUES (?, ?);", person.getFullName(), person.getYearOfBirth());
+        jdbcTemplate.update("INSERT INTO people (full_name, year_of_birth) VALUES (?, ?);", person.getFullName(), person.getYearOfBirth());
     }
 
     public Person getPersonById(int id) {
@@ -31,7 +31,7 @@ public class PersonDAO {
     }
 
     public void updatePerson(Person person, int id) {
-        jdbcTemplate.update("UPDATE people SET fullName = ?, yearOfBirth = ? WHERE personId = ?;", person.getFullName(), person.getYearOfBirth(), id);
+        jdbcTemplate.update("UPDATE people SET full_name = ?, year_of_birth = ? WHERE personId = ?;", person.getFullName(), person.getYearOfBirth(), id);
     }
 
     public void deletePerson(int id) {
